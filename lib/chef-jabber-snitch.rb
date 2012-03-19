@@ -4,15 +4,18 @@ require 'chef/handler'
 require 'net/http'
 require 'uri'
 require 'json'
-require 'carrier-pigeon'
+require 'xmpp4r/client'
+include Jabber
 
-class IRCSnitch < Chef::Handler
+class JabberSnitch < Chef::Handler
 
-  def initialize(irc_uri, github_user, github_token, ssl = false)
-    @irc_uri = irc_uri
+  def initialize(jabber_user, jabber_password, jabber_server = 'talk.google.com', jabber_to, github_user, github_token)
+    @jabber_user = jabber_user
+    @jabber_password = jabber_password
+    @jabber_server = jabber_server
+    @jabber_to = jabber_to
     @github_user = github_user
     @github_token = github_token
-    @ssl = ssl
     @timestamp = Time.now.getutc
   end
 
@@ -59,11 +62,18 @@ class IRCSnitch < Chef::Handler
 
       begin
         timeout(10) do
-          CarrierPigeon.send(:uri => @irc_uri, :message => message, :ssl => @ssl)
-          Chef::Log.info("Informed chefs via IRC '#{message}'")
+          jid = Jid::new(@jabber_user)
+          cl = Client::new(jid)
+          cl.connect(@server,5222)
+          cl.auth(@password)
+          to = @jabber_user
+          subject = "Chef failure"
+          m = Message::new(to, message).set_type(:normal).set_id('1').set_subject(subject)
+          cl.send m
+          Chef::Log.info("Informed chefs via Jabber '#{message}'")
         end
       rescue Timeout::Error
-        Chef::Log.error("Timed out while attempting to message Chefs via IRC")
+        Chef::Log.error("Timed out while attempting to message Chefs via Jabber")
       end
     end
   end

@@ -13,11 +13,13 @@ Append the following to your Chef client configs, usually at =/etc/chef/client.r
 :
 : jabber_user = "nick@gmail.com"
 : jabber_password = "password"
+: jabber_server = "talk.google.com"
+: jabber_to = "nick@gmail.com"
 : github_user = "foobar"
 : github_token = "asKkwqofovX3shBmtMf8EWhDzSr7ouUb"
 : enable_ssl = true
 : 
-: jabber_handler = JabberSnitch.new(irc_uri, github_user, github_token, enable_ssl)
+: jabber_handler = JabberSnitch.new(jabber_user, jabber_password, jabber_server, jabber_to, github_user, github_token)
 : exception_handlers << jabber_handler
 
 * License

@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('chef')
   #s.add_dependency('carrier-pigeon')
-  s.add_dependency('xmpp4r-simple')
+  s.add_dependency('xmpp4r')
 
   s.files         = `git ls-files`.split("\n")
   s.require_paths = ["lib"]
