@@ -9,7 +9,7 @@ include Jabber
 
 class JabberSnitch < Chef::Handler
 
-  def initialize(jabber_user, jabber_password, jabber_server = 'talk.google.com', jabber_to, github_user, github_token)
+  def initialize(jabber_user, jabber_password, jabber_to, github_user, github_token, jabber_server = 'talk.google.com')
     @jabber_user = jabber_user
     @jabber_password = jabber_password
     @jabber_server = jabber_server
