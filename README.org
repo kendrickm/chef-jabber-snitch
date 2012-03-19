@@ -11,10 +11,10 @@ Append the following to your Chef client configs, usually at =/etc/chef/client.r
 : # Notify admins via IRC when a Chef run fails
 : require 'chef-jabber-snitch'
 :
-: jabber_user = "nick@gmail.com"
+: jabber_user = "alice@gmail.com"
 : jabber_password = "password"
 : jabber_server = "talk.google.com"
-: jabber_to = "nick@gmail.com"
+: jabber_to = "bob@gmail.com"
 : github_user = "foobar"
 : github_token = "asKkwqofovX3shBmtMf8EWhDzSr7ouUb"
 : 
