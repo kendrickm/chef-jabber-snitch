@@ -5,7 +5,6 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'xmpp4r/client'
-include Jabber
 
 class JabberSnitch < Chef::Handler
 
@@ -39,7 +38,7 @@ class JabberSnitch < Chef::Handler
       Chef::Log.error("Chef run failed @ #{@timestamp}")
       Chef::Log.error("#{run_status.formatted_exception}")
     else
-      Chef::Log.error("Chef run failed @ #{@timestamp}, snitchin' to chefs via IRC")
+      Chef::Log.error("Chef run failed @ #{@timestamp}, snitchin' to chefs via Jabber")
 
       gist_id = nil
       begin
@@ -62,6 +61,7 @@ class JabberSnitch < Chef::Handler
 
       begin
         timeout(10) do
+          include Jabber
           jid = Jid::new(@jabber_user)
           cl = Client::new(jid)
           cl.connect(@server,5222)
