@@ -61,14 +61,15 @@ class JabberSnitch < Chef::Handler
 
       begin
         timeout(10) do
-          include Jabber
-          jid = Jid::new(@jabber_user)
-          cl = Client::new(jid)
-          cl.connect(@server,5222)
-          cl.auth(@password)
-          to = @jabber_user
+
+          jid = Jabber::JID::new(@jabber_user)
+          cl = Jabber::Client::new(jid)
+          cl.connect(@jabber_server,5222)
+          cl.auth(@jabber_password)
+          to = @jabber_to
           subject = "Chef failure"
-          m = Message::new(to, message).set_type(:normal).set_id('1').set_subject(subject)
+          m = Jabber::Message::new(to, message)
+          m.type = :chat
           cl.send m
           Chef::Log.info("Informed chefs via Jabber '#{message}'")
         end
