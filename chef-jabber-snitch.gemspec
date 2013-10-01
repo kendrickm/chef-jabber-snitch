@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
-  s.name        = "chef-jabber-snitch"
+  s.name        = "chef-jabber-paste-snitch"
   s.version     = "1.0.0"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Kendrick Martin"]
   s.email       = ["kendrick.martin@webtrends.com"]
-  s.homepage    = "https://github.com/kaerast/chef-jabber-snitch"
+  s.homepage    = "https://github.com/kendrickm/chef-jabber-snitch"
   s.summary     = %q{An exception handler for OpsCode Chef runs (Pastebin & Jabber)}
   s.description = %q{An exception handler for OpsCode Chef runs (Pastebin & Jabber)}
   s.has_rdoc    = false
