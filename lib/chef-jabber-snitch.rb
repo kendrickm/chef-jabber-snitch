@@ -9,7 +9,7 @@ require 'xmpp4r'
 require 'xmpp4r/muc'
 require 'xmpp4r/roster'
 
-class JabberSnitch < Chef::Handler
+class ChefJabberPasteSnitch < Chef::Handler
 
   def initialize(jabber_user, jabber_password, jabber_room, pastebin_server, jabber_server = 'talk.google.com', pastebin_expire = 74880, jabber_port = 5222)
     @jabber_user = jabber_user
