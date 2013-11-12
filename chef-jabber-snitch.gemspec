@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "chef-jabber-paste-snitch"
-  s.version     = "1.0.0"
+  s.version     = "1.0.1"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Kendrick Martin"]
   s.email       = ["kendrick.martin@webtrends.com"]
